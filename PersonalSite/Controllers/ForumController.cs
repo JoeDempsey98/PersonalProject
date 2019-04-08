@@ -44,6 +44,7 @@ namespace PersonalSite.Controllers
             {
                 Id = post.Id,
                 AuthorId = post.User.Id,
+                AuthorName = post.User.UserName,
                 AuthorRating = post.User.Rating,
                 Title = post.Title,
                 DatePosted = post.Created.ToString(),

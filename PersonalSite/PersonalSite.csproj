@@ -16,4 +16,8 @@
     <ProjectReference Include="..\PersonalSite.Service\PersonalSite.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
 </Project>

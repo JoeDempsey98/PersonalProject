@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using PersonalSite.Data;
 using PersonalSite.Data.Models;
 using PersonalSite.Service;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using PersonalSite.Areas.Identity.Models;
 
 namespace PersonalSite
 {
@@ -31,6 +33,8 @@ namespace PersonalSite
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddScoped<IForum, ForumService>();
             services.AddScoped<IPost, PostService>();
