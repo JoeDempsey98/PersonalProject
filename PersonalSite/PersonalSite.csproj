@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="wwwroot\images\forum\" />
+    <Folder Include="wwwroot\images\theme\" />
   </ItemGroup>
 
 </Project>

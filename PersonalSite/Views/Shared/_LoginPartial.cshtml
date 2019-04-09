@@ -8,11 +8,28 @@
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" 
+                   data-toggle="dropdown" role="button" 
+                   aria-haspopup="true" aria-expanded="false">
+                Settings
+                <span class="caret>"</a>
+                <ul class="dropdown-menu">
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Profile</li>
+                    <li><a asp-controller="Profile" asp-action="Detail">Profile</a></li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Admin</li>
+                        <li><a asp-controller="Forum" asp-action="Create">Create Forum</a></li>
+                        <li><a asp-controller="Profile" asp-action="Index">View Users</a></li>
+                    }
+                </ul>
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Sign Out</button>
             </li>
         </ul>
     </form>
@@ -20,7 +37,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Login">Sign In</a></li>
+        <li class="active"><a asp-area="Identity" asp-page="/Account/Register">Sign Up</a></li>
     </ul>
 }
