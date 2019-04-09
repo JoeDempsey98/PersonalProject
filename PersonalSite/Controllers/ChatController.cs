@@ -17,7 +17,7 @@ namespace PersonalSite.Controllers
 
         public IActionResult Index()
         {
-            string userName = ;
+            string userName = User.Identity.Name;
 
             var messages = _chatService.GetFilteredByUserName(userName).Select(message => new ChatListingModel
             {
@@ -32,6 +32,15 @@ namespace PersonalSite.Controllers
             };
 
             return View(model);
+        }
+
+        public IActionResult New(string userName)
+        {
+
+            // TODO: return to a form for filling out
+            // a new chat message between two
+            // users
+            return View();
         }
     }
 }

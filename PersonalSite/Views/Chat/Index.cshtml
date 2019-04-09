@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Mvc;
+@model PersonalSite.Models.Chat.ChatIndexModel
+@if (!Model.ChatList.Any())
+{
+    <h1>Chat</h1>
+
+    <p>
+        It looks like you don't have any messages.<br/>
+        Why not 
+        <a asp-controller="Chat" asp-action="New" asp-route-userName="@User.Identity.Name">
+             make
+</a>
+        some?
+    </p>
+}
+else
+{
+    <table class="table table-hover table-responsive table-bordered" >
+        <tbody>
+            @foreach (var chat in Model.ChatList)
+            {
+                <tr>
+                    <td>
+                        @chat.Users
+                            .Where(user => user.Name != User.Identity.Name)
+                            .First()
+                            .Name
+                    </td>
+                    <td>
+                        @chat.Messages.Last().Content.Substring(0, 50)
+                    </td>
+                    <td>
+                        @chat.Messages.Last().Created.ToShortTimeString();
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

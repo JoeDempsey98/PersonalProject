@@ -16,9 +16,9 @@ namespace PersonalSite.Service
             _context = context;
         }
 
-        public Task Create(ChatMessage chatMessage)
+        public async Task Create(ChatMessage chatMessage)
         {
-            throw new System.NotImplementedException();
+            await _context.Messages.AddAsync(chatMessage);
         }
 
         public Task Delete(ChatMessage chatMessage)
