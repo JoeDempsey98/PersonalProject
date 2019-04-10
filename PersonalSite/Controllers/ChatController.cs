@@ -36,11 +36,14 @@ namespace PersonalSite.Controllers
 
         public IActionResult New(string userName)
         {
-
+            var model = new ChatMessageModel
+            {
+                AuthorName = User.Identity.Name
+            };
             // TODO: return to a form for filling out
             // a new chat message between two
             // users
-            return View();
+            return View(model);
         }
     }
 }

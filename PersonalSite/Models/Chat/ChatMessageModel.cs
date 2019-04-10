@@ -8,9 +8,10 @@ namespace PersonalSite.Models.Chat
 {
     public class ChatMessageModel
     {
-        public int Id;
+        public int ChatRoomId;
         public string Content;
         public DateTime Created;
-        public IdentityRole User;
+        public string AuthorName;
+        public string AuthorId;
     }
 }
