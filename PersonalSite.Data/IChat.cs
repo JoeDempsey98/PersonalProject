@@ -7,10 +7,10 @@ namespace PersonalSite.Data
     public interface IChat
     {
         ChatMessage GetById(int id);
-        IEnumerable<ChatMessage> GetFilteredByUserName(string id);
+        IEnumerable<ChatMessage> GetFilteredByUserName(string userName);
         IEnumerable<ChatMessage> GetFIlteredByChatRoomId(int id);
 
-        Task Create(ChatMessage chatMessage);
+        Task Create(ChatMessage chatMessage, ChatRoom chatRoom);
         Task UpdateChatContent(int id, string newContent);
         Task UpdateChatUsers(ChatRoom chatRoom, ApplicationUser user);
         Task Delete(ChatMessage chatMessage);

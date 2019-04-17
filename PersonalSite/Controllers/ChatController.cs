@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PersonalSite.Data;
 using PersonalSite.Models.Chat;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 
 namespace PersonalSite.Controllers
 {
+    [Authorize]
     public class ChatController : Controller
     {
         private readonly IChat _chatService;

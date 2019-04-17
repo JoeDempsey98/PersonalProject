@@ -16,7 +16,7 @@ namespace PersonalSite.Service
             _context = context;
         }
 
-        public async Task Create(ChatMessage chatMessage)
+        public async Task Create(ChatMessage chatMessage, ChatRoom chatRoom)
         {
             await _context.Messages.AddAsync(chatMessage);
         }
@@ -28,7 +28,10 @@ namespace PersonalSite.Service
 
         public ChatMessage GetById(int id)
         {
-            throw new System.NotImplementedException();
+            var message = _context.Messages.Where(m => m.Id == id)
+                .First();
+
+            return message;
         }
 
         public IEnumerable<ChatMessage> GetFilteredByUserName(string userName)
@@ -36,11 +39,6 @@ namespace PersonalSite.Service
             return _context.Messages.Include(m => m.User).Where(m => m.User.UserName == userName)
                 .Include(m => m.ChatRoom).ThenInclude(c => c.Users)
                 .Include(m => m.ChatRoom).ThenInclude(c => c.Messages);
-        }
-
-        public IEnumerable<ChatMessage> GetFilteredByChatUserName(string id)
-        {
-            throw new System.NotImplementedException();
         }
 
         public Task UpdateChatContent(int id, string newContent)
