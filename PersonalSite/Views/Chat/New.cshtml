@@ -1,7 +1,9 @@
 ﻿@model PersonalSite.Models.Chat.ChatMessageModel
 <h2>New</h2>
 
-<form style="margin: 75vh 0px 0px 0px" class="form-group">
+<form class="form-group" asp-controller="Chat" asp-action="Create" method="post">
     <label asp-for="Content">Content</label>
     <textarea class="form-control" asp-for="Content"></textarea>
+    <button type="submit" class="btn btn-newMessage">Send</button>
+    <input type="hidden" asp-for="Created" value="@DateTime.Now" />
 </form>

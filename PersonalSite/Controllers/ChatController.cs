@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PersonalSite.Data;
+using PersonalSite.Data.Models;
 using PersonalSite.Models.Chat;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,13 @@ namespace PersonalSite.Controllers
     [Authorize]
     public class ChatController : Controller
     {
+        private static UserManager<ApplicationUser> _userManager; 
         private readonly IChat _chatService;
 
-        public ChatController(IChat chatService)
+        public ChatController(IChat chatService, UserManager<ApplicationUser> userManager)
         {
             _chatService = chatService;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -40,12 +44,22 @@ namespace PersonalSite.Controllers
         {
             var model = new ChatMessageModel
             {
-                AuthorName = User.Identity.Name
+                AuthorName = User.Identity.Name,
+                AuthorId = _userManager.GetUserId(User)                
             };
             // TODO: return to a form for filling out
             // a new chat message between two
             // users
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Create(ChatMessageModel model)
+        {
+            if (model.ChatRoomId == 0)
+            {
+                //create a new chat room, and pass the id to the model
+            }
         }
     }
 }

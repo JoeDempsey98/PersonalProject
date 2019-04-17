@@ -10,7 +10,7 @@ namespace PersonalSite.Data.Models
         public string Content { get; set; }
         public DateTime Created { get; set; }
 
-        public ApplicationUser User { get; set; }
-        public ChatRoom ChatRoom { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        public virtual ChatRoom ChatRoom { get; set; }
     }
 }
