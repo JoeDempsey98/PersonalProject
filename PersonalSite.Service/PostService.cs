@@ -51,9 +51,13 @@ namespace PersonalSite.Service
                 .First();
         }
 
-        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
+        public IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery)
         {
-            throw new NotImplementedException();
+            return string.IsNullOrEmpty(searchQuery)
+                ? forum.Posts               
+                : forum.Posts.Where(post 
+                    => post.Title.ToLower().Contains(searchQuery.ToLower()) 
+                    || post.Content.ToLower().Contains(searchQuery.ToLower()));
         }
 
         public IEnumerable<Post> GetLatestPosts(int n)

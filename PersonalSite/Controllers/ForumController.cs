@@ -4,6 +4,7 @@ using PersonalSite.Data.Models;
 using PersonalSite.Models.Forum;
 using PersonalSite.Models.Post;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PersonalSite.Controllers
@@ -13,9 +14,10 @@ namespace PersonalSite.Controllers
         private readonly IForum _forumService;
         private readonly IPost _postService;
 
-        public ForumController(IForum forumService)
+        public ForumController(IForum forumService, IPost postService)
         {
             _forumService = forumService;
+            _postService = postService;
         }
 
         public IActionResult Index()
@@ -35,10 +37,10 @@ namespace PersonalSite.Controllers
             return View(model);
         }
 
-        public IActionResult Topic(int id)
+        public IActionResult Topic(int id, string searchQuery)
         {
             var forum = _forumService.GetById(id);
-            var posts = forum.Posts;
+            var posts = _postService.GetFilteredPosts(forum, searchQuery).ToList();
 
             var postListings = posts.Select(post => new PostListingModel
             {
@@ -59,6 +61,12 @@ namespace PersonalSite.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Search(int id, string searchQuery)
+        {
+            return RedirectToAction("Topic", new { id, searchQuery });
         }
 
         private ForumListingModel BuildForumListing(Post post)
