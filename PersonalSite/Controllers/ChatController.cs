@@ -60,6 +60,8 @@ namespace PersonalSite.Controllers
             {
                 //create a new chat room, and pass the id to the model
             }
+
+            return RedirectToAction("Room", new { model.ChatRoomId });
         }
     }
 }
