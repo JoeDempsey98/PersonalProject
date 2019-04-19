@@ -10,6 +10,7 @@ using PersonalSite.Data.Models;
 using PersonalSite.Service;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using PersonalSite.Areas.Identity.Models;
+using PersonalSite.Hubs;
 
 namespace PersonalSite
 {
@@ -40,6 +41,8 @@ namespace PersonalSite
             services.AddScoped<IChat, ChatService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +65,11 @@ namespace PersonalSite
 
             app.UseAuthentication();
 
+
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/chatHub");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
