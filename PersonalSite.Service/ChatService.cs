@@ -34,6 +34,14 @@ namespace PersonalSite.Service
             return message;
         }
 
+        public ChatRoom GetChatRoomById(int id)
+        {
+            var chatRoom = _context.ChatRooms.Where(r => r.Id == id)
+                .Include(r => r.Messages)
+                .Include(r => r.Users);
+            return chatRoom.FirstOrDefault();
+        }
+
         public IEnumerable<ChatMessage> GetFilteredByUserName(string userName)
         {
             return _context.Messages.Include(m => m.User).Where(m => m.User.UserName == userName)
@@ -46,9 +54,10 @@ namespace PersonalSite.Service
             throw new System.NotImplementedException();
         }
 
-        public Task UpdateChatUsers(ChatRoom chatRoom, ApplicationUser user)
+        public async Task UpdateChatUsers(ChatRoom chatRoom, ApplicationUser user)
         {
-            throw new System.NotImplementedException();
+            chatRoom.Users.Append(user);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<ChatMessage> GetFIlteredByChatRoomId(int id)

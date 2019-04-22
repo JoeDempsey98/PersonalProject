@@ -9,6 +9,7 @@ namespace PersonalSite.Data
         ChatMessage GetById(int id);
         IEnumerable<ChatMessage> GetFilteredByUserName(string userName);
         IEnumerable<ChatMessage> GetFIlteredByChatRoomId(int id);
+        ChatRoom GetChatRoomById(int id);
 
         Task Create(ChatMessage chatMessage, ChatRoom chatRoom);
         Task UpdateChatContent(int id, string newContent);

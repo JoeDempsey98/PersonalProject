@@ -30,7 +30,9 @@ connection.start().then(function () {
 document.getElementById("sendBtn").addEventListener("click", function (event) {
     let userName = document.getElementById("userNameInput").value;
     let message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", userName, message).catch(function (err) {
+    let users = document.getElementById("usersInput").value;
+    let userNames = users.split(", ");
+    connection.invoke("SendMessageToChatRoom", userName, userNames, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();

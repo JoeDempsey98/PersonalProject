@@ -16,5 +16,6 @@ namespace PersonalSite.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostReply> PostReplies { get; set; }
         public DbSet<ChatMessage> Messages { get; set; }
+        public DbSet<ChatRoom> ChatRooms { get; set; }
     }
 }
