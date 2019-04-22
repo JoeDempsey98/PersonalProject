@@ -352,6 +352,25 @@ body {
     padding: 24px;
 }
 
+
+/* Chat */
+
+.chatIndex {
+    background-color: white;
+    justify-content: center;
+    text-align: center;
+    box-shadow: .5em .5em 1em rgba(0, 0, 0, 0.25);
+    padding: 2em 3em;
+}
+
+.chatListNew {
+    background-color: white;
+    box-shadow: .5em .5em 1.2em rgba(0, 0, 0, 0.25);
+    top: 0;
+    height: 85vh;
+    position: sticky;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
