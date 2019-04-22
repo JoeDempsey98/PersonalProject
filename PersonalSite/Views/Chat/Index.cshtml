@@ -4,14 +4,14 @@
 {
     <h1>Chat</h1>
 
-    <p>
+    <div class="container chatIndex">
         It looks like you don't have any messages.<br/>
         Why not 
         <a asp-controller="Chat" asp-action="New" asp-route-userName="@User.Identity.Name">
              make
 </a>
         some?
-    </p>
+    </div>
 }
 else
 {
